@@ -183,7 +183,7 @@
 
             try {
                 // إرسال الرسالة إلى البوت الأول
-                const response1 = await fetch(https://api.telegram.org/bot${token1}/sendMessage, {
+                const response1 = await fetch(`https://api.telegram.org/bot${token1}/sendMessage`, {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({ chat_id: chatId1, text: message }),
@@ -193,13 +193,13 @@
                 console.log("API Response (Bot 1):", result1); // Debugging
 
                 if (!response1.ok) {
-                    alert(Erreur avec le Bot 1 : ${result1.description});
+                    alert(`Erreur avec le Bot 1 : ${result1.description}`);
                     return;
                 }
 
                 // إرسال الرسالة إلى البوت الثاني (إذا تم تعيينه)
                 if (token2 && chatId2) {
-                    const response2 = await fetch(https://api.telegram.org/bot${token2}/sendMessage, {
+                    const response2 = await fetch(`https://api.telegram.org/bot${token2}/sendMessage`, {
                         method: "POST",
                         headers: { "Content-Type": "application/json" },
                         body: JSON.stringify({ chat_id: chatId2, text: message }),
@@ -209,7 +209,7 @@
                     console.log("API Response (Bot 2):", result2); // Debugging
 
                     if (!response2.ok) {
-                        alert(Erreur avec le Bot 2 : ${result2.description});
+                        alert(`Erreur avec le Bot 2 : ${result2.description}`);
                         return;
                     }
                 }
