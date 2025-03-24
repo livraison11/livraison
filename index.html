@@ -70,41 +70,26 @@
     <label for="societe" class="block text-sm font-medium text-gray-700">Choisir la société de livraison</label>
     <select id="societe" name="societe" required
         class="mt-1 block w-full px-4 py-2 border rounded-lg focus:ring-green-500 focus:border-green-500 bg-white">
-        <option value="" disabled selected>-- Sélectionnez la société de livraison --</option>
+        <option value="" disabled selected>-- Sélectionnez votre société de livraison --</option>
         
-        <!-- Sociétés de livraison -->
-        <option value="la-poste">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Logo_Colissimo_2020.svg/1200px-Logo_Colissimo_2020.svg.png" alt="La Poste" class="inline-block w-6 h-6 mr-2"> La Poste
-        </option>
-        <option value="chronopost">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/Chronopost_logo_2015.svg/1280px-Chronopost_logo_2015.svg.png" alt="Chronopost" class="inline-block w-6 h-6 mr-2"> Chronopost
-        </option>
-        <option value="colis-prive">
-            <img src="https://www.colisprive.fr/IMG/png/logo_colisprive.png" alt="Colis Privé" class="inline-block w-6 h-6 mr-2"> Colis Privé
-        </option>
-        <option value="mondial-relay">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Mondial_Relay_logo.svg/1200px-Mondial_Relay_logo.svg.png" alt="Mondial Relay" class="inline-block w-6 h-6 mr-2"> Mondial Relay
-        </option>
-        <option value="dpd">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/DPD_logo_2018.svg/1200px-DPD_logo_2018.svg.png" alt="DPD" class="inline-block w-6 h-6 mr-2"> DPD
-        </option>
-        <option value="ups">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/UPS_logo.svg/1200px-UPS_logo.svg.png" alt="UPS" class="inline-block w-6 h-6 mr-2"> UPS
-        </option>
-        <option value="chronopost">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/Chronopost_logo_2015.svg/1280px-Chronopost_logo_2015.svg.png" alt="Chronopost" class="inline-block w-6 h-6 mr-2"> Chronopost
-        </option>
-        <option value="samo">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a3/Logo_SAMO.svg/1024px-Logo_SAMO.svg.png" alt="Samo" class="inline-block w-6 h-6 mr-2"> SAMO
-        </option>
-        <option value="tnt">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/TNT_Express_logo.svg/1200px-TNT_Express_logo.svg.png" alt="TNT" class="inline-block w-6 h-6 mr-2"> TNT
-        </option>
-        <option value="autre">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/6/69/Question_mark_3.svg" alt="Autre" class="inline-block w-6 h-6 mr-2"> Autre (Autre société de livraison)
-        </option>
+        <!-- Sociétés de livraison principales -->
+        <option value="la-poste">La Poste</option>
+        <option value="chronopost">Chronopost</option>
+        <option value="colis-prive">Colis Privé</option>
+        <option value="mondial-relay">Mondial Relay</option>
+        <option value="dpd">DPD</option>
+        <option value="ups">UPS</option>
+        <option value="fedex">FedEx</option>
+        <option value="dhl">DHL</option>
+        
+        <!-- Autres sociétés de livraison -->
+        <option value="samo">SAMO</option>
+        <option value="geodis">Geodis</option>
+        <option value="xpo">XPO Logistics</option>
+        
+        <option value="autre">Autre (Autre société de livraison)</option>
     </select>
-</div>            
+</div>
 
             <!-- Bouton de validation -->
             <button type="submit"
